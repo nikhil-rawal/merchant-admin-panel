@@ -7,7 +7,7 @@ import { PlusIcon } from "@phosphor-icons/react/dist/ssr/Plus";
 
 import { appConfig } from "@/config/app";
 
-export const metadata = { title: `Blank | Dashboard | ${appConfig.name}` };
+export const metadata = { title: `Payments | Dashboard | ${appConfig.name}` };
 
 export default function Page() {
 	return (
@@ -22,11 +22,11 @@ export default function Page() {
 			<Stack spacing={4}>
 				<Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: "flex-start" }}>
 					<Box sx={{ flex: "1 1 auto" }}>
-						<Typography variant="h4">Blank</Typography>
+						<Typography variant="h4">Payments</Typography>
 					</Box>
 					<div>
 						<Button startIcon={<PlusIcon />} variant="contained">
-							Action
+							Add Payment
 						</Button>
 					</div>
 				</Stack>

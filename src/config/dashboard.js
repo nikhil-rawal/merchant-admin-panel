@@ -12,7 +12,7 @@ export const dashboardConfig = {
 		{
 			key: "misc",
 			title: "Misc",
-			items: [{ key: "blank", title: "Blank", href: paths.dashboard.blank, icon: "file-dashed" }],
+			items: [{ key: "[payments]", title: "Payments", href: paths.dashboard.payments, icon: "currency-dollar-simple" }],
 		},
 	],
 };

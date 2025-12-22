@@ -59,7 +59,7 @@ export const paths = {
 		},
 		academy: { browse: "/dashboard/academy", details: (courseId) => `/dashboard/academy/courses/${courseId}` },
 		analytics: "/dashboard/analytics",
-		blank: "/dashboard/blank",
+		payments: "/dashboard/payments",
 		blog: {
 			list: "/dashboard/blog",
 			details: (postId) => `/dashboard/blog/${postId}`,
