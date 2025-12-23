@@ -27,7 +27,8 @@ async function getAccessToken() {
 		});
 
 		if (!response.ok) {
-			throw new Error(`Authentication failed: ${response.statusText}`);
+			const errorText = await response.text().catch(() => response.statusText);
+			throw new Error(`Authentication failed: ${response.status} ${errorText}`);
 		}
 
 		const data = await response.json();
@@ -43,14 +44,14 @@ async function getAccessToken() {
 }
 
 export async function fetchPayments(options = {}) {
-	const { page = 1, per_page = 10, payment_status = null } = options;
+	const { page = 1, per_page = 10, payment_status = null, merchant_id = null } = options;
 
 	try {
 		const token = await getAccessToken();
 
-		// Build query parameters
+		const merchantId = merchant_id || MERCHANT_ID;
 		const params = new URLSearchParams({
-			merchant_id: MERCHANT_ID,
+			merchant_id: merchantId,
 			page,
 			per_page,
 		});
@@ -68,7 +69,8 @@ export async function fetchPayments(options = {}) {
 		});
 
 		if (!response.ok) {
-			throw new Error(`Failed to fetch payments: ${response.statusText}`);
+			const errorText = await response.text().catch(() => response.statusText);
+			throw new Error(`Failed to fetch payments: ${response.status} ${errorText}`);
 		}
 
 		const data = await response.json();
