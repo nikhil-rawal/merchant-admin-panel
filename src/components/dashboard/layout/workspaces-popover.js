@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 
-export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false, merchantId }) {
+export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false, label }) {
 	return (
 		<Menu
 			anchorEl={anchorEl}
@@ -19,7 +19,7 @@ export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false, m
 		>
 			<MenuItem
 				onClick={() => {
-					onChange?.(merchantId);
+					onChange?.(label);
 					onClose();
 				}}
 			>
@@ -35,7 +35,7 @@ export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false, m
 						textOverflow: "ellipsis",
 					}}
 				>
-					{merchantId}
+					{label}
 				</Typography>
 			</MenuItem>
 		</Menu>

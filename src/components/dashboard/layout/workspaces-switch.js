@@ -7,14 +7,23 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { CaretUpDownIcon } from "@phosphor-icons/react/dist/ssr/CaretUpDown";
 
+import { usePayments } from "@/hooks/use-payments";
 import { usePopover } from "@/hooks/use-popover";
 
-import { useMerchantId } from "../../../hooks/use-merchant-id";
 import { WorkspacesPopover } from "./workspaces-popover";
 
 export function WorkspacesSwitch() {
 	const popover = usePopover();
-	const merchantId = useMerchantId();
+	const merchantId = process.env.NEXT_PUBLIC_MERCHANT_ID;
+	const { allPayments, loading } = usePayments(merchantId);
+
+	const label = React.useMemo(() => {
+		if (allPayments && allPayments.length > 0) {
+			const paymentWithLabel = allPayments.find((payment) => payment.label);
+			return paymentWithLabel?.label || null;
+		}
+		return null;
+	}, [allPayments]);
 
 	return (
 		<React.Fragment>
@@ -34,7 +43,7 @@ export function WorkspacesSwitch() {
 				<Avatar src={"/assets/workspace-avatar-1.png"} variant="rounded" />
 				<Box sx={{ flex: "1 1 auto" }}>
 					<Typography color="var(--Workspaces-title-color)" variant="subtitle3">
-						{merchantId}
+						{loading ? "Loading..." : label}
 					</Typography>
 				</Box>
 				<CaretUpDownIcon color="var(--Workspaces-expand-color)" fontSize="var(--icon-fontSize-sm)" />
@@ -44,7 +53,7 @@ export function WorkspacesSwitch() {
 				onChange={popover.handleClose}
 				onClose={popover.handleClose}
 				open={popover.open}
-				merchantId={merchantId}
+				label={loading ? "Loading..." : label}
 			/>
 		</React.Fragment>
 	);
