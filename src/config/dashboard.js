@@ -2,17 +2,33 @@ import { paths } from "@/paths";
 
 export const dashboardConfig = {
 	layout: "vertical",
-	navColor: "evident",
+	navColor: "discrete",
 	navItems: [
 		{
 			key: "dashboards",
-			title: "Dashboards",
-			items: [{ key: "overview", title: "Overview", href: paths.dashboard.overview, icon: "house" }],
+			items: [{ key: "overview", title: "Overview", icon: "house" }],
 		},
 		{
-			key: "misc",
-			title: "Misc",
-			items: [{ key: "[payments]", title: "Payments", href: paths.dashboard.payments, icon: "currency-dollar-simple" }],
+			key: "payments",
+			items: [
+				{
+					key: "[payments]",
+					title: "Payments",
+					href: paths.dashboard.payments(),
+					icon: "currency-dollar-simple",
+					matcher: { type: "startsWith", href: paths.dashboard.payments("") },
+				},
+			],
+		},
+		{
+			key: "customers",
+			items: [
+				{
+					key: "[customers]",
+					title: "Customers",
+					icon: "users",
+				},
+			],
 		},
 	],
 };

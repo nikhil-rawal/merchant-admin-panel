@@ -59,7 +59,13 @@ export const paths = {
 		},
 		academy: { browse: "/dashboard/academy", details: (courseId) => `/dashboard/academy/courses/${courseId}` },
 		analytics: "/dashboard/analytics",
-		payments: "/dashboard/payments",
+		payments: (merchantId) => {
+			const id = merchantId || process.env.NEXT_PUBLIC_MERCHANT_ID;
+			if (!id) {
+				throw new Error("Merchant ID is required");
+			}
+			return `/dashboard/payments?merchant_id=${id}`;
+		},
 		blog: {
 			list: "/dashboard/blog",
 			details: (postId) => `/dashboard/blog/${postId}`,
