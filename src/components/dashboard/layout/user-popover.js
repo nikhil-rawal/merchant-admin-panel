@@ -54,13 +54,13 @@ function SignOutButton() {
 	);
 }
 
-export function UserPopover({ anchorEl, onClose, open }) {
+export function UserPopover({ anchorEl, onClose }) {
 	return (
 		<Popover
 			anchorEl={anchorEl}
 			anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			onClose={onClose}
-			open={Boolean(open)}
+			open={false}
 			slotProps={{ paper: { sx: { width: "280px" } } }}
 			transformOrigin={{ horizontal: "right", vertical: "top" }}
 		>

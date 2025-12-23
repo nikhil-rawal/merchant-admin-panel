@@ -5,13 +5,9 @@ import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 
-export const workspaces = [
-	{ name: "Devias", avatar: "/assets/workspace-avatar-1.png" },
-	{ name: "Carpatin", avatar: "/assets/workspace-avatar-2.png" },
-];
-
-export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false }) {
+export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false, merchantId }) {
 	return (
 		<Menu
 			anchorEl={anchorEl}
@@ -21,19 +17,27 @@ export function WorkspacesPopover({ anchorEl, onChange, onClose, open = false })
 			slotProps={{ paper: { sx: { width: "250px" } } }}
 			transformOrigin={{ horizontal: "right", vertical: "top" }}
 		>
-			{workspaces.map((workspace) => (
-				<MenuItem
-					key={workspace.name}
-					onClick={() => {
-						onChange?.(workspace.name);
+			<MenuItem
+				onClick={() => {
+					onChange?.(merchantId);
+					onClose();
+				}}
+			>
+				<ListItemAvatar>
+					<Avatar src={"/assets/workspace-avatar-1.png"} variant="rounded" />
+				</ListItemAvatar>
+				<Typography
+					color="var(--Workspaces-caption-color)"
+					variant="caption"
+					noWrap
+					sx={{
+						overflow: "hidden",
+						textOverflow: "ellipsis",
 					}}
 				>
-					<ListItemAvatar>
-						<Avatar src={workspace.avatar} sx={{ "--Avatar-size": "32px" }} variant="rounded" />
-					</ListItemAvatar>
-					{workspace.name}
-				</MenuItem>
-			))}
+					{merchantId}
+				</Typography>
+			</MenuItem>
 		</Menu>
 	);
 }

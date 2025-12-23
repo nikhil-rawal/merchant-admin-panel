@@ -8,7 +8,7 @@ export const appConfig = {
 	language: "en",
 	theme: "light",
 	themeColor: "#090a0b",
-	primaryColor: "neonBlue",
+	primaryColor: "royalBlue",
 	logLevel: process.env.NEXT_PUBLIC_LOG_LEVEL || LogLevel.ALL,
 	authStrategy: process.env.NEXT_PUBLIC_AUTH_STRATEGY || AuthStrategy.NONE,
 };

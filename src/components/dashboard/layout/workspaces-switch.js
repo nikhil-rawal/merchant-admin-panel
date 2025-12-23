@@ -9,11 +9,12 @@ import { CaretUpDownIcon } from "@phosphor-icons/react/dist/ssr/CaretUpDown";
 
 import { usePopover } from "@/hooks/use-popover";
 
-import { workspaces, WorkspacesPopover } from "./workspaces-popover";
+import { useMerchantId } from "../../../hooks/use-merchant-id";
+import { WorkspacesPopover } from "./workspaces-popover";
 
 export function WorkspacesSwitch() {
 	const popover = usePopover();
-	const workspace = workspaces[0];
+	const merchantId = useMerchantId();
 
 	return (
 		<React.Fragment>
@@ -30,13 +31,10 @@ export function WorkspacesSwitch() {
 					p: "4px 8px",
 				}}
 			>
-				<Avatar src={workspace.avatar} variant="rounded" />
+				<Avatar src={"/assets/workspace-avatar-1.png"} variant="rounded" />
 				<Box sx={{ flex: "1 1 auto" }}>
-					<Typography color="var(--Workspaces-title-color)" variant="caption">
-						Workspace
-					</Typography>
-					<Typography color="var(--Workspaces-name-color)" variant="subtitle2">
-						{workspace.name}
+					<Typography color="var(--Workspaces-title-color)" variant="subtitle3">
+						{merchantId}
 					</Typography>
 				</Box>
 				<CaretUpDownIcon color="var(--Workspaces-expand-color)" fontSize="var(--icon-fontSize-sm)" />
@@ -46,6 +44,7 @@ export function WorkspacesSwitch() {
 				onChange={popover.handleClose}
 				onClose={popover.handleClose}
 				open={popover.open}
+				merchantId={merchantId}
 			/>
 		</React.Fragment>
 	);
