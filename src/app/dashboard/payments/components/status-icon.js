@@ -1,4 +1,3 @@
-import React from "react";
 import { CheckFat, Prohibit, Star, XCircle } from "@phosphor-icons/react";
 
 export const STATUS_ICON = {
@@ -59,9 +58,4 @@ export function getStatusStyles(status) {
 			icon: "text.secondary",
 		}
 	);
-}
-
-export function StatusIcon({ status, size = 16 }) {
-	const Icon = STATUS_ICON[status] || Star;
-	return <Icon size={size} />;
 }

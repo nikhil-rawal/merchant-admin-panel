@@ -86,27 +86,3 @@ export async function fetchPayments(options = {}) {
 		throw error;
 	}
 }
-
-export async function getPaymentsByStatus(status, page = 1, per_page = 10) {
-	const statusMap = {
-		successful: ["PAID", "PAID_RECEIVED", "FORCE_PAID"],
-		cancelled: ["CANCELLED", "EXPIRED"],
-		pending: ["NEW", "PENDING", "BANK_CONNECTION_FAILED", "AWAITING_CONFIRMATION", "PROCESSING"],
-		failed: ["FAILED", "AUTH_FAILED", "EXECUTE_FAILED"],
-	};
-
-	const statuses = statusMap[status.toLowerCase()];
-	if (!statuses) {
-		throw new Error(`Invalid status: ${status}`);
-	}
-
-	const { results } = await fetchPayments({ page, per_page });
-	const filtered = results.filter((payment) => statuses.includes(payment.payment_status));
-
-	return {
-		results: filtered,
-		total: filtered.length,
-		page,
-		per_page,
-	};
-}
