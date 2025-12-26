@@ -57,7 +57,7 @@ const articles = {
 };
 
 export function SearchDialog({ onClose, open = false }) {
-	const [value, setValue] = React.useState("");
+	// const [value, setValue] = React.useState("");
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [displayArticles, setDisplayArticles] = React.useState(false);
 
@@ -85,16 +85,14 @@ export function SearchDialog({ onClose, open = false }) {
 					<form onSubmit={handleSubmit}>
 						<OutlinedInput
 							fullWidth
-							onChange={(event) => {
-								setValue(event.target.value);
-							}}
+							onChange={() => {}}
 							placeholder="Search..."
 							startAdornment={
 								<InputAdornment position="start">
 									<MagnifyingGlassIcon />
 								</InputAdornment>
 							}
-							value={value}
+							// value={value}
 						/>
 					</form>
 					{isLoading ? (

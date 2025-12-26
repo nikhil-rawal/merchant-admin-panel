@@ -7,9 +7,14 @@ import { PlusIcon } from "@phosphor-icons/react/dist/ssr/Plus";
 
 import { appConfig } from "@/config/app";
 
-export const metadata = { title: `Blank | Dashboard | ${appConfig.name}` };
+import PaymentsTable from "./paymentsTable/payments-table";
 
-export default function Page() {
+export const metadata = { title: `Payments | Dashboard | ${appConfig.name}` };
+
+export default async function Page({ searchParams }) {
+	const params = await searchParams;
+	const merchantId = params?.merchant_id || process.env.NEXT_PUBLIC_MERCHANT_ID;
+
 	return (
 		<Box
 			sx={{
@@ -22,15 +27,15 @@ export default function Page() {
 			<Stack spacing={4}>
 				<Stack direction={{ xs: "column", sm: "row" }} spacing={3} sx={{ alignItems: "flex-start" }}>
 					<Box sx={{ flex: "1 1 auto" }}>
-						<Typography variant="h4">Blank</Typography>
+						<Typography variant="h4">Payments</Typography>
 					</Box>
-					<div>
+					<div style={{ display: "none" }}>
 						<Button startIcon={<PlusIcon />} variant="contained">
-							Action
+							Add Payment
 						</Button>
 					</div>
 				</Stack>
-				<Box sx={{ border: "1px dashed var(--mui-palette-divider)", height: "300px", p: "4px" }} />
+				<PaymentsTable merchantId={merchantId} />
 			</Stack>
 		</Box>
 	);

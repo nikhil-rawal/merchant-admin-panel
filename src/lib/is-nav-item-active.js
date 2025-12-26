@@ -2,18 +2,20 @@ export function isNavItemActive({ disabled, external, href, matcher, pathname })
 	if (disabled || !href || external) {
 		return false;
 	}
+	const hrefPath = href.split("?")[0];
+	const pathnamePath = pathname.split("?")[0];
 
 	if (matcher) {
 		if (matcher.type === "startsWith") {
-			return pathname.startsWith(matcher.href);
+			return pathnamePath.startsWith(matcher.href.split("?")[0]);
 		}
 
 		if (matcher.type === "equals") {
-			return pathname === matcher.href;
+			return pathnamePath === matcher.href.split("?")[0];
 		}
 
 		return false;
 	}
 
-	return pathname === href;
+	return pathnamePath === hrefPath;
 }

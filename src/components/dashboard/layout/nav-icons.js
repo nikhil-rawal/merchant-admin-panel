@@ -5,6 +5,7 @@ import { ChartPieIcon } from "@phosphor-icons/react/dist/ssr/ChartPie";
 import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr/ChatsCircle";
 import { CreditCardIcon } from "@phosphor-icons/react/dist/ssr/CreditCard";
 import { CubeIcon } from "@phosphor-icons/react/dist/ssr/Cube";
+import { CurrencyDollarSimple } from "@phosphor-icons/react/dist/ssr/CurrencyDollarSimple";
 import { CurrencyEthIcon } from "@phosphor-icons/react/dist/ssr/CurrencyEth";
 import { EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr/EnvelopeSimple";
 import { FileIcon } from "@phosphor-icons/react/dist/ssr/File";
@@ -48,6 +49,7 @@ export const icons = {
 	"sign-out": SignOutIcon,
 	"text-align-left": TextAlignLeftIcon,
 	"warning-diamond": WarningDiamondIcon,
+	"currency-dollar-simple": CurrencyDollarSimple,
 	cube: CubeIcon,
 	file: FileIcon,
 	gear: GearIcon,
